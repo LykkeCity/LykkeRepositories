@@ -3,10 +3,19 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <AssemblyName>Lykke.Core</AssemblyName>
-    <PackageId>Core</PackageId>
+    <PackageId>Lykke.Pkg.Core</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8</PackageTargetFallback>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
 	<EnableDefaultContentItems>false</EnableDefaultContentItems>
+	<Authors>Lykke</Authors>
+	<Company>Lykke</Company>
+	<Description>The library provides API to connect to MS Azure Stogate tables.</Description>
+	<Copyright>@2017 - Lykke</Copyright>
+	<PackageLicenseUrl>https://github.com/LykkeCity/LykkeRepositories</PackageLicenseUrl>
+	<PackageProjectUrl>https://github.com/LykkeCity/LykkeRepositories</PackageProjectUrl>
+	<PackageIconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;s=200</PackageIconUrl>
+	<RepositoryUrl>https://github.com/LykkeCity/LykkeRepositories.git</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

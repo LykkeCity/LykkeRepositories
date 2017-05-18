@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Lykke.Pkg.AzureRepositories</id>
+    <version>1.0.0</version>
+    <authors>Lykke</authors>
+    <owners>Lykke</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/LykkeCity/LykkeRepositories</licenseUrl>
+    <projectUrl>https://github.com/LykkeCity/LykkeRepositories</projectUrl>
+    <iconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;s=200</iconUrl>
+    <description>The library provides API to connect to MS Azure Stogate tables.</description>
+    <copyright>@2017 - Lykke</copyright>
+    <repository type="git" url="https://github.com/LykkeCity/LykkeRepositories.git" />
+    <dependencies>
+      <group targetFramework=".NETCoreApp1.1">
+        <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.NETCore.App" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="WindowsAzure.Storage" version="8.1.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\netcoreapp1.1\Lykke.AzureRepositories.dll" target="lib\netcoreapp1.1\Lykke.AzureRepositories.dll" />
+    <file src="bin\Release\netcoreapp1.1\Lykke.Core.dll" target="lib\netcoreapp1.1\Lykke.Core.dll" />
+  </files>
+</package>
