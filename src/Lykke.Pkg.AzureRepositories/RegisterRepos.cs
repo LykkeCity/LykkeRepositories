@@ -4,6 +4,7 @@ using Lykke.Core.Azure.Blob;
 using Lykke.Core.Log;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace Lykke.AzureRepositories
 {
     public static class RegisterReposExt

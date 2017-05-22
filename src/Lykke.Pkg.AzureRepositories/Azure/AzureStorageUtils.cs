@@ -69,7 +69,7 @@ namespace Lykke.AzureRepositories.Azure
 
             foreach (
                 var propertyInfo in
-                    item.GetType().GetProperties().Where(propertyInfo => propertyInfo.CanRead && propertyInfo.CanWrite))
+                    item.GetType().GetTypeInfo().GetProperties().Where(propertyInfo => propertyInfo.CanRead && propertyInfo.CanWrite))
 
                 stringBuilder.Append(propertyInfo.Name + "=[" + propertyInfo.GetValue(item, null) + "];");
 

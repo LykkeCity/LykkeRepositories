@@ -24,7 +24,7 @@ namespace Lykke.Core.Azure.Tables
 
         private static IEnumerable<PropertyInfo> GetProps(Type type)
         {
-           return type.GetProperties().Where(prop => prop.CanWrite && prop.CanRead);
+           return type.GetTypeInfo().GetProperties().Where(prop => prop.CanWrite && prop.CanRead);
         }
 
         public void Merge(object instance)

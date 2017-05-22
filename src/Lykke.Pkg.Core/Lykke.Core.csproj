@@ -1,34 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-    <AssemblyName>Lykke.Core</AssemblyName>
+    <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>Lykke.Pkg.Core</PackageId>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8</PackageTargetFallback>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
-	<EnableDefaultContentItems>false</EnableDefaultContentItems>
-	<Authors>Lykke</Authors>
-	<Company>Lykke</Company>
-	<Description>The library provides API to connect to MS Azure Stogate tables.</Description>
-	<Copyright>@2017 - Lykke</Copyright>
-	<PackageLicenseUrl>https://github.com/LykkeCity/LykkeRepositories</PackageLicenseUrl>
-	<PackageProjectUrl>https://github.com/LykkeCity/LykkeRepositories</PackageProjectUrl>
-	<PackageIconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;s=200</PackageIconUrl>
-	<RepositoryUrl>https://github.com/LykkeCity/LykkeRepositories.git</RepositoryUrl>
-	<RepositoryType>git</RepositoryType>
+    <Version>1.0.1</Version>
+    <Authors>Lykke</Authors>
+    <Company>Lykke</Company>
+    <Product>Lykke.Core</Product>
+    <Description>The library provides API to connect to MS Azure Stogate tables.</Description>
+    <Copyright>@2017 - Lykke</Copyright>
+    <PackageLicenseUrl>https://github.com/LykkeCity/LykkeRepositories</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/LykkeCity/LykkeRepositories</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LykkeCity/LykkeRepositories.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;s=200</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.WindowsAzure.Storage">
-      <HintPath>C:\Users\Антон\.nuget\packages\windowsazure.storage\8.0.0\lib\netstandard1.3\Microsoft.WindowsAzure.Storage.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
   </ItemGroup>
 
 </Project>
