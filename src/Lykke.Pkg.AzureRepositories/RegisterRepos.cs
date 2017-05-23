@@ -11,6 +11,10 @@ namespace Lykke.AzureRepositories
     {
         public static void RegisterRepositories(this IServiceCollection services, string connectionString, ILog log)
         {
+            services.RegisterRepositories(connectionString, connectionString, log);
+        }
+        public static void RegisterRepositories(this IServiceCollection services, string connectionString, string userConnectionString, ILog log)
+        {
 
             services.AddSingleton<IJsonDataRepository>(
                  new JsonDataRepository(new AzureBlobStorage(connectionString), "settings", "history", "generalsettings.json")
@@ -29,7 +33,7 @@ namespace Lykke.AzureRepositories
                 new LockRepository(new AzureTableStorage<LockEntity>(connectionString, "Lock", log)));
 
             services.AddSingleton<IUserRepository>(
-               new UserRepository(new AzureTableStorage<UserEntity>(connectionString, "User", log)));
+               new UserRepository(new AzureTableStorage<UserEntity>(userConnectionString, "User", log)));
 
             services.AddSingleton<IServiceTokenRepository>(
               new ServiceTokenRepository(new AzureTableStorage<ServiceTokenEntity>(connectionString, "ServiceToken", log)));
