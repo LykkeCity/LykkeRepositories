@@ -14,6 +14,11 @@ namespace Lykke.AzureRepositories
             return "U";
         }
 
+        public static string GenerateRowKey(string userEmail)
+        {
+            return userEmail.ToLowerInvariant();
+        }
+
         public string PasswordHash { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -35,13 +40,13 @@ namespace Lykke.AzureRepositories
         public async Task<IUserEntity> GetUserByUserEmail(string userEmail)
         {
             var pk = UserEntity.GeneratePartitionKey();
-            return await _tableStorage.GetDataAsync(pk, userEmail.ToLower());
+            return await _tableStorage.GetDataAsync(pk, UserEntity.GenerateRowKey(userEmail));
         }
 
         public async Task<IUserEntity> GetUserByUserEmail(string userEmail, string passwordHash)
         {
             var pk = UserEntity.GeneratePartitionKey();
-            var result = await _tableStorage.GetDataAsync(pk, userEmail.ToLower());
+            var result = await _tableStorage.GetDataAsync(pk, UserEntity.GenerateRowKey(userEmail));
             if (result == null)
             {
                 return null;
@@ -54,6 +59,7 @@ namespace Lykke.AzureRepositories
             try
             {
                 var te = (UserEntity)user;
+                te.RowKey = UserEntity.GenerateRowKey(te.RowKey);
                 if (te.PartitionKey == null)
                 {
                     te.PartitionKey = UserEntity.GeneratePartitionKey();
@@ -80,7 +86,7 @@ namespace Lykke.AzureRepositories
         {
             try
             {
-                await _tableStorage.DeleteAsync(UserEntity.GeneratePartitionKey(), userEmail);
+                await _tableStorage.DeleteAsync(UserEntity.GeneratePartitionKey(), UserEntity.GenerateRowKey(userEmail));
             }
             catch
             {
