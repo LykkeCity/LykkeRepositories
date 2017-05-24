@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Core", "src\Lykke.Pkg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.AzureRepositories", "src\Lykke.Pkg.AzureRepositories\Lykke.AzureRepositories.csproj", "{6488DDC2-5C3A-47D8-9817-CBCB36D14011}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.AzureRepositories.Test", "tests\Lykke.AzureRepositories.Test\Lykke.AzureRepositories.Test.csproj", "{C20191A1-FF4B-4852-A627-D7606A1E1337}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29843A6B-17BB-4F0F-A95B-BEEE35C8DE56} = {29843A6B-17BB-4F0F-A95B-BEEE35C8DE56}
+		{6488DDC2-5C3A-47D8-9817-CBCB36D14011} = {6488DDC2-5C3A-47D8-9817-CBCB36D14011}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,10 @@ Global
 		{6488DDC2-5C3A-47D8-9817-CBCB36D14011}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6488DDC2-5C3A-47D8-9817-CBCB36D14011}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6488DDC2-5C3A-47D8-9817-CBCB36D14011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C20191A1-FF4B-4852-A627-D7606A1E1337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C20191A1-FF4B-4852-A627-D7606A1E1337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20191A1-FF4B-4852-A627-D7606A1E1337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C20191A1-FF4B-4852-A627-D7606A1E1337}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

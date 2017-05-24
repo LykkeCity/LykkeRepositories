@@ -7,23 +7,22 @@ namespace Lykke.AzureRepositories
 {
     public class AccountTokenHistoryEntity : TableEntity, IAccountTokenHistory
     {
-        
-        public new string PartitionKey
+
+
+        public string TokenId
         {
-            get { return TokenId; }
-            set { TokenId = value; }
+            get { return PartitionKey; }
+            set { PartitionKey = value; }
         }
 
-        public new string RowKey
+        public string UserName
         {
-            get { return UserName; }
-            set { UserName = value; }
+            get { return RowKey; }
+            set { RowKey = value; }
         }
 
-        public string TokenId { get; set; }
         public string AccessList { get; set; }
         public string IpList { get; set; }
-        public string UserName { get; set; }
         public string UserIpAddress { get; set; }
     }
     public class AccountTokenHistoryRepository : IAccountTokenHistoryRepository
