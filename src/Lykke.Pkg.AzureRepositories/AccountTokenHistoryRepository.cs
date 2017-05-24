@@ -24,6 +24,7 @@ namespace Lykke.AzureRepositories
         public string AccessList { get; set; }
         public string IpList { get; set; }
         public string UserName { get; set; }
+        public string UserIpAddress { get; set; }
     }
     public class AccountTokenHistoryRepository : IAccountTokenHistoryRepository
     {
@@ -35,14 +36,15 @@ namespace Lykke.AzureRepositories
 
         }
 
-        public async Task SaveTokenHistoryAsync(IToken token, string userName)
+        public async Task SaveTokenHistoryAsync(IToken token, string userName, string userIpAddress)
         {
             var th = new AccountTokenHistoryEntity
             {
                 UserName = userName,
                 AccessList = token.AccessList,
                 IpList = token.IpList,
-                TokenId = token.RowKey
+                TokenId = token.RowKey,
+                UserIpAddress = userIpAddress
             };
             
             await _tableStorage.InsertOrMergeAsync(th);
