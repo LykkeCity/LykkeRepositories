@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Lykke.Core;
 using Lykke.Core.Azure;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -15,12 +16,7 @@ namespace Lykke.AzureRepositories
             set { PartitionKey = value; }
         }
 
-        public string UserName
-        {
-            get { return RowKey; }
-            set { RowKey = value; }
-        }
-
+        public string UserName { get; set; }
         public string AccessList { get; set; }
         public string IpList { get; set; }
         public string UserIpAddress { get; set; }
@@ -39,6 +35,7 @@ namespace Lykke.AzureRepositories
         {
             var th = new AccountTokenHistoryEntity
             {
+                RowKey = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff"),
                 UserName = userName,
                 AccessList = token.AccessList,
                 IpList = token.IpList,
