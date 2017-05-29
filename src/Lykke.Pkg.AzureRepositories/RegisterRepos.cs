@@ -1,4 +1,6 @@
 ﻿using Lykke.AzureRepositories.Azure.Tables;
+using Lykke.AzureRepositories.Dictionaries;
+using Lykke.Common.Entities.Dictionaries;
 using Lykke.Core;
 using Lykke.Core.Azure.Blob;
 using Lykke.Core.Log;
@@ -40,6 +42,9 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<IAccountTokenHistoryRepository>(
               new AccountTokenHistoryRepository(new AzureTableStorage<AccountTokenHistoryEntity>(connectionString, "AccessTokenHistory", log)));
+
+            services.AddSingleton<IMarginTradingAssetsRepository>(
+                new MarginTradingAssetsRepository(new AzureTableStorage<Dictionaries.MarginTradingAsset>(connectionString, "MarginTradingAssets", log)));
         }
     }
 
