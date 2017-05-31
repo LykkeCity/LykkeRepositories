@@ -10,7 +10,7 @@ namespace Lykke.Core
         string MerchantId { get; set; }
         string MerchantName { get; set; }
         string PublicKey { get; set; }
-        string ApyKey { get; set; }
+        string ApiKey { get; set; }
     }
 
     public interface IMerchantRepository

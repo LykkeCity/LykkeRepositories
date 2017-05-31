@@ -22,7 +22,7 @@ namespace Lykke.AzureRepositories
 
         public string MerchantName { get; set; }
         public string PublicKey { get; set; }
-        public string ApyKey { get; set; }
+        public string ApiKey { get; set; }
     }
 
     public class MerchantRepository : IMerchantRepository
