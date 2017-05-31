@@ -37,13 +37,13 @@ namespace Lykke.AzureRepositories
 
         public async Task<IMerchantEntity> GetAsync(string merchantId)
         {
-            var pk = TokenEntity.GeneratePartitionKey();
+            var pk = MerchantEntity.GeneratePartitionKey();
              return await _tableStorage.GetDataAsync(pk, merchantId);
         }
 
         public async Task<IEnumerable<IMerchantEntity>> GetAllAsync()
         {
-            var pk = TokenEntity.GeneratePartitionKey();
+            var pk = MerchantEntity.GeneratePartitionKey();
 
             return await _tableStorage.GetDataAsync(pk);
         }
