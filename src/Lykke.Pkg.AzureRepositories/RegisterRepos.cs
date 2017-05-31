@@ -45,6 +45,9 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<IMarginTradingAssetsRepository>(
                 new MarginTradingAssetsRepository(new AzureTableStorage<Dictionaries.MarginTradingAsset>(connectionString, "MarginTradingAssets", log)));
+
+            services.AddSingleton<IMerchantRepository>(
+                new MerchantRepository(new AzureTableStorage<MerchantEntity>(connectionString, "Merchants", log)));
         }
     }
 
