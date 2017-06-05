@@ -48,6 +48,10 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<IMerchantRepository>(
                 new MerchantRepository(new AzureTableStorage<MerchantEntity>(connectionString, "Merchants", log)));
+
+            services.AddSingleton<IUserSignInHistoryRepository>(
+                new UserSignInHistoryRepository(new AzureTableStorage<UserSignInHistoryEntity>(userConnectionString, "UserSignInHistory", log)));
+            
         }
     }
 
