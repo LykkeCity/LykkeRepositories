@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <PackageId>Lykke.Pkg.AzureRepositories</PackageId>
+    <PackageId>Lykke.AzureRepositories</PackageId>
     <Version>1.0.1</Version>
     <Authors>Lykke</Authors>
     <Company>Lykke</Company>
