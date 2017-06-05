@@ -15,7 +15,7 @@ namespace Lykke.AzureRepositories
 
         public string GetRawKey()
         {
-            return SignInDate.ToString("yyyy-MM-dd hh:mm:ss.fff");
+            return SignInDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
 
         public string UserEmail { get; set; }
