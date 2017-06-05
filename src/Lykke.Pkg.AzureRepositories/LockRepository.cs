@@ -16,6 +16,7 @@ namespace Lykke.AzureRepositories
 
         public DateTime DateTime { get; set; }
         public string UserName { get; set; }
+        public string UserEmail { get; set; }
         public string IpAddress { get; set; }
 
 
@@ -37,16 +38,18 @@ namespace Lykke.AzureRepositories
         {
             var pk = LockEntity.GeneratePartitionKey();
             return await _tableStorage.GetDataAsync(pk, JsonLockKey);
-           
+
         }
 
-        public async Task SetJsonPageLockAsync(string userName, string ipAddress)
+
+        public async Task SetJsonPageLockAsync(string userEmail, string userName, string ipAddress)
         {
             var pk = LockEntity.GeneratePartitionKey();
             await _tableStorage.InsertOrMergeAsync(new LockEntity
             {
                 PartitionKey = pk,
                 RowKey = JsonLockKey,
+                UserEmail = userEmail,
                 DateTime = DateTime.Now,
                 UserName = userName,
                 IpAddress = ipAddress,

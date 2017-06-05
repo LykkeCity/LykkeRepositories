@@ -7,7 +7,7 @@ namespace Lykke.Core
     public interface ILockRepository
     {
         Task<ILockEntity> GetJsonPageLockAsync();
-        Task SetJsonPageLockAsync(string userName, string ipAddress);
+        Task SetJsonPageLockAsync(string userEmail, string userName, string ipAddress);
         Task ResetJsonPageLockAsync();
     }
 
@@ -15,6 +15,7 @@ namespace Lykke.Core
     {
         DateTime DateTime { get; set; }
         string UserName { get; set; }
+        string UserEmail { get; set; }
         string IpAddress { get; set; }
     }
 }
