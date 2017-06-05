@@ -50,7 +50,7 @@ namespace Lykke.AzureRepositories
                 PartitionKey = pk,
                 RowKey = JsonLockKey,
                 UserEmail = userEmail,
-                DateTime = DateTime.Now,
+                DateTime = DateTime.UtcNow,
                 UserName = userName,
                 IpAddress = ipAddress,
                 ETag = "*"
