@@ -43,6 +43,7 @@ namespace Lykke.Core
 
     public interface IUserEntity : IEntity
     {
+        string Salt { get; set; } 
         string PasswordHash { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
