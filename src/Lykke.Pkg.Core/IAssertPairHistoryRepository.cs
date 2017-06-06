@@ -8,8 +8,8 @@ namespace Lykke.Core
     public interface IAssertPairHistoryEntity
     {
         string AssetPair { get; set; }
-        float Bid { get; set; }
-        float Ask { get; set; }
+        double Bid { get; set; }
+        double Ask { get; set; }
         int Accuracy { get; set; }
         DateTime StoredTime { get; set; }
 
