@@ -9,7 +9,7 @@ namespace Lykke.AzureRepositories
     public class AccountTokenHistoryEntity : TableEntity, IAccountTokenHistory
     {
 
-
+        
         public string TokenId
         {
             get { return PartitionKey; }
