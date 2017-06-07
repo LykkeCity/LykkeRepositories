@@ -2,7 +2,7 @@
 
 namespace Lykke.Core
 {
-    public interface IMerchantWallet
+    public interface IMerchantWalletEntity
     {
         string MerchantId { get; set; }
         string Data { get; set; }
@@ -11,6 +11,6 @@ namespace Lykke.Core
 
     public interface IMerchantWalletRepository
     {
-        Task SaveNewAddress(IMerchantWallet merchantWallet);
+        Task SaveNewAddress(IMerchantWalletEntity merchantWallet);
     }
 }

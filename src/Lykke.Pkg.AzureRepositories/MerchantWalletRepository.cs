@@ -9,7 +9,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Lykke.AzureRepositories
 {
-    public class MerchantWallet : TableEntity, IMerchantWallet
+    public class MerchantWalletEntity : TableEntity, IMerchantWalletEntity
     {
         public string MerchantId
         {
@@ -18,9 +18,9 @@ namespace Lykke.AzureRepositories
         }
         public string Data { get; set; }
 
-        public static MerchantWallet Create(IMerchantWallet merchantWallet)
+        public static MerchantWalletEntity Create(IMerchantWalletEntity merchantWallet)
         {
-            return new MerchantWallet
+            return new MerchantWalletEntity
             {
                 MerchantId = merchantWallet.MerchantId,
                 Data = merchantWallet.Data,
@@ -31,17 +31,17 @@ namespace Lykke.AzureRepositories
     }
     public class MerchantWalletRepository : IMerchantWalletRepository
     {
-        private readonly INoSQLTableStorage<MerchantWallet> _tableStorage;
+        private readonly INoSQLTableStorage<MerchantWalletEntity> _tableStorage;
 
-        public MerchantWalletRepository(INoSQLTableStorage<MerchantWallet> tableStorage)
+        public MerchantWalletRepository(INoSQLTableStorage<MerchantWalletEntity> tableStorage)
         {
             _tableStorage = tableStorage;
 
         }
 
-        public async Task SaveNewAddress(IMerchantWallet merchantWallet)
+        public async Task SaveNewAddress(IMerchantWalletEntity merchantWallet)
         {
-            await _tableStorage.InsertOrMergeAsync(MerchantWallet.Create(merchantWallet));
+            await _tableStorage.InsertOrMergeAsync(MerchantWalletEntity.Create(merchantWallet));
         }
     }
 }

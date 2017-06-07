@@ -54,7 +54,10 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<IAssertPairHistoryRepository>(
                 new AssertPairHistoryRepository(new AzureTableStorage<AssertPairHistoryEntity>(connectionString, "AssertPairHistory", log)));
-            
+
+            services.AddSingleton<IMerchantWalletRepository>(
+                new MerchantWalletRepository(new AzureTableStorage<MerchantWalletEntity>(connectionString, "MerchantWallets", log)));
+
         }
     }
 
