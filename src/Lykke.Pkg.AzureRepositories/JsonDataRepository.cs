@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Lykke.AzureRepositories.Extentions;
 using Lykke.Core;
 using Lykke.Core.Azure;
 
@@ -47,7 +48,7 @@ namespace Lykke.AzureRepositories
             await _blobStorage.SaveBlobAsync(_container, _file, data);
             if (!string.IsNullOrEmpty(_historyContainer))
             {
-                await _blobStorage.SaveBlobAsync(_historyContainer, $"{_file}_{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss.fff}_{userName}_{ipAddress}",
+                await _blobStorage.SaveBlobAsync(_historyContainer, $"{_file}_{DateTime.UtcNow.StorageString()}_{userName}_{ipAddress}",
                     data);
             }
         }

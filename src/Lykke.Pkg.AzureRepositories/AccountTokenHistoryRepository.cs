@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Lykke.Core;
 using Lykke.Core.Azure;
 using Microsoft.WindowsAzure.Storage.Table;
+using Lykke.AzureRepositories.Extentions;
 
 namespace Lykke.AzureRepositories
 {
@@ -35,7 +36,7 @@ namespace Lykke.AzureRepositories
         {
             var th = new AccountTokenHistoryEntity
             {
-                RowKey = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                RowKey = DateTime.UtcNow.StorageString(),
                 UserName = userName,
                 AccessList = token.AccessList,
                 IpList = token.IpList,

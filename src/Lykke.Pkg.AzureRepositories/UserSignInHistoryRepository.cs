@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Lykke.AzureRepositories.Extentions;
 using Lykke.Core;
 using Lykke.Core.Azure;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -15,7 +16,7 @@ namespace Lykke.AzureRepositories
 
         public string GetRawKey()
         {
-            return SignInDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            return SignInDate.StorageString();
         }
 
         public string UserEmail { get; set; }
