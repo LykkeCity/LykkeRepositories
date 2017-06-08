@@ -21,14 +21,18 @@ namespace Lykke.AzureRepositories
         public string KeyOne { get; set; }
         public string KeyTwo { get; set; }
         public string UserIpAddress { get; set; }
+        
     }
     public class ServiceTokenHistoryRepository : IServiceTokenHistoryRepository
     {
         private readonly INoSQLTableStorage<ServiceTokenHistoryEntity> _tableStorage;
 
+        
+
         public ServiceTokenHistoryRepository(INoSQLTableStorage<ServiceTokenHistoryEntity> tableStorage)
         {
             _tableStorage = tableStorage;
+           
 
         }
 

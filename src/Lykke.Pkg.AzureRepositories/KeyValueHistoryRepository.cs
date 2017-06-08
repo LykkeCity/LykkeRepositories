@@ -24,11 +24,15 @@ namespace Lykke.AzureRepositories
     public class KeyValueHistoryRepository : IKeyValueHistoryRepository
     {
         private readonly INoSQLTableStorage<KeyValueHistory> _tableStorage;
+        private readonly IBlobStorage _blobStorage;
+        private readonly string _container;
 
-        public KeyValueHistoryRepository(INoSQLTableStorage<KeyValueHistory> tableStorage)
+        public KeyValueHistoryRepository(INoSQLTableStorage<KeyValueHistory> tableStorage,
+            IBlobStorage blobStorage, string container)
         {
             _tableStorage = tableStorage;
-
+            _blobStorage = blobStorage;
+            _container = container;
         }
 
         public async Task SaveKeyValueHistoryAsync(string keyValues, string userName, string userIpAddress)
@@ -38,9 +42,12 @@ namespace Lykke.AzureRepositories
                 PartitionKey = KeyValueHistory.GeneratePartitionKey(),
                 RowKey = DateTime.UtcNow.StorageString(),
                 UserName = userName,
-                KeyValuesSnapshot = keyValues,
                 UserIpAddress = userIpAddress
             };
+
+            th.KeyValuesSnapshot = $"{th.UserName}_{th.RowKey}_{th.UserIpAddress}";
+
+            await _blobStorage.SaveBlobAsync(_container, th.KeyValuesSnapshot, Encoding.UTF8.GetBytes(keyValues));
 
             await _tableStorage.InsertOrMergeAsync(th);
         }

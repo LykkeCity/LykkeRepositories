@@ -62,7 +62,8 @@ namespace Lykke.AzureRepositories
                 new KeyValueHistoryRepository(new AzureTableStorage<KeyValueHistory>(connectionString, "KeyValueHistory", log)));
 
             services.AddSingleton<IServiceTokenHistoryRepository>(
-                new ServiceTokenHistoryRepository(new AzureTableStorage<ServiceTokenHistoryEntity>(connectionString, "ServiceTokenHistory", log)));
+                new ServiceTokenHistoryRepository(new AzureTableStorage<ServiceTokenHistoryEntity>(connectionString, "ServiceTokenHistory", log),
+                    new AzureBlobStorage(connectionString), "KeyValueHistory"));
 
         }
     }
