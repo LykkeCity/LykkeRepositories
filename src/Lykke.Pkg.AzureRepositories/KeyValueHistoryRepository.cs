@@ -17,7 +17,7 @@ namespace Lykke.AzureRepositories
         }
 
 
-        public string KeyValues { get; set; }
+        public string KeyValuesSnapshot { get; set; }
         public string UserName { get; set; }
         public string UserIpAddress { get; set; }
     }
@@ -38,7 +38,7 @@ namespace Lykke.AzureRepositories
                 PartitionKey = KeyValueHistory.GeneratePartitionKey(),
                 RowKey = DateTime.UtcNow.StorageString(),
                 UserName = userName,
-                KeyValues = keyValues,
+                KeyValuesSnapshot = keyValues,
                 UserIpAddress = userIpAddress
             };
 

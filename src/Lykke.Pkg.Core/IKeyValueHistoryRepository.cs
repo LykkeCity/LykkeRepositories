@@ -7,7 +7,7 @@ namespace Lykke.Core
 {
     public interface IKeyValueHistory : IEntity
     {
-        string KeyValues { get; set; }
+        string KeyValuesSnapshot { get; set; }
         string UserName { get; set; }
         string UserIpAddress { get; set; }
     }
