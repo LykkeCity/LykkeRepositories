@@ -14,6 +14,6 @@ namespace Lykke.Core
 
     public interface IKeyValueHistoryRepository
     {
-        Task SaveTokenHistoryAsync(string keyValues, string userName, string userIpAddress);
+        Task SaveKeyValueHistoryAsync(string keyValues, string userName, string userIpAddress);
     }
 }

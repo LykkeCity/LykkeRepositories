@@ -31,7 +31,7 @@ namespace Lykke.AzureRepositories
 
         }
 
-        public async Task SaveTokenHistoryAsync(string keyValues, string userName, string userIpAddress)
+        public async Task SaveKeyValueHistoryAsync(string keyValues, string userName, string userIpAddress)
         {
             var th = new KeyValueHistory
             {
