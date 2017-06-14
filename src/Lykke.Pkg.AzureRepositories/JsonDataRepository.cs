@@ -8,7 +8,23 @@ using Lykke.Core.Azure;
 namespace Lykke.AzureRepositories
 {
 
-    public class JsonDataRepository : IJsonDataRepository
+
+    public class JsonDataRepository : BlobDataRepository, IJsonDataRepository
+    {
+        public JsonDataRepository(IBlobStorage blobStorage, string container, string historyContainer, string file) : base(blobStorage, container, historyContainer, file)
+        {
+        }
+    }
+
+    public class AssertDataRepository : BlobDataRepository, IAssertDataRepository
+    {
+        public AssertDataRepository(IBlobStorage blobStorage, string container, string historyContainer, string file) : base(blobStorage, container, historyContainer, file)
+        {
+        }
+    }
+
+
+    public class BlobDataRepository : IBlobDataRepository
     {
         private readonly IBlobStorage _blobStorage;
 
@@ -18,7 +34,7 @@ namespace Lykke.AzureRepositories
 
         private readonly string _file;
 
-        public JsonDataRepository(IBlobStorage blobStorage, string container, string historyContainer, string file){
+        public BlobDataRepository(IBlobStorage blobStorage, string container, string historyContainer, string file){
             _blobStorage = blobStorage;
             _container = container;
             _historyContainer = historyContainer;

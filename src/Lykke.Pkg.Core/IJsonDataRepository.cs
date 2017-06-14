@@ -3,8 +3,17 @@ using System.Threading.Tasks;
 
 namespace Lykke.Core
 {
+    public interface IJsonDataRepository : IBlobDataRepository
+    {
+        
+    }
 
-    public interface IJsonDataRepository
+    public interface IAssertDataRepository : IBlobDataRepository
+    {
+
+    }
+
+    public interface IBlobDataRepository
     {
         Task<string> GetDataAsync();
         Task<Tuple<string, string>> GetDataWithMetaAsync();
