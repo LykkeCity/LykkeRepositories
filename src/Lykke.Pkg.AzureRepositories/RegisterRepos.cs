@@ -66,8 +66,8 @@ namespace Lykke.AzureRepositories
             services.AddSingleton<IServiceTokenHistoryRepository>(
                 new ServiceTokenHistoryRepository(new AzureTableStorage<ServiceTokenHistoryEntity>(connectionString, "ServiceTokenHistory", log)));
 
-            services.AddSingleton<IAssertDataRepository>(
-                new AssertDataRepository(new AzureBlobStorage(connectionString), "asserts", "assertsHistory", "assertsHistory.json")
+            services.AddSingleton<IAccessDataRepository>(
+                new AccessDataRepository(new AzureBlobStorage(connectionString), "asserts", "assertsHistory", "assertsHistory.json")
             );
 
         }

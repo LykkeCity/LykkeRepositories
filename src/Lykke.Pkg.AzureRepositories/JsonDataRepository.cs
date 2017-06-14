@@ -16,9 +16,9 @@ namespace Lykke.AzureRepositories
         }
     }
 
-    public class AssertDataRepository : BlobDataRepository, IAssertDataRepository
+    public class AccessDataRepository : BlobDataRepository, IAccessDataRepository
     {
-        public AssertDataRepository(IBlobStorage blobStorage, string container, string historyContainer, string file) : base(blobStorage, container, historyContainer, file)
+        public AccessDataRepository(IBlobStorage blobStorage, string container, string historyContainer, string file) : base(blobStorage, container, historyContainer, file)
         {
         }
     }

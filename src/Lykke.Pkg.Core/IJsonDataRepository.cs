@@ -8,7 +8,7 @@ namespace Lykke.Core
         
     }
 
-    public interface IAssertDataRepository : IBlobDataRepository
+    public interface IAccessDataRepository : IBlobDataRepository
     {
 
     }
