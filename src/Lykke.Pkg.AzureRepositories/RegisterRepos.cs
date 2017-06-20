@@ -70,6 +70,9 @@ namespace Lykke.AzureRepositories
                 new AccessDataRepository(new AzureBlobStorage(connectionString), "access", "accessHistory", "accessHistory.json")
             );
 
+            services.AddSingleton<IMerchantPayRequestRepository>(
+                new MerchantPayRequestRepository(new AzureTableStorage<MerchantPayRequest>(connectionString, "MerchantPayRequest", log)));
+
         }
     }
 
