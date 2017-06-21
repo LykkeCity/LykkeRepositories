@@ -7,7 +7,7 @@ using Lykke.Core;
 namespace Lykke.Core
 {
     [Flags]
-    public enum MerchantPayRequestNotification : int
+    public enum MerchantPayRequestNotification
     {
         Nothing = 0,
         InProgress = 1,
