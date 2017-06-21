@@ -1,3 +1,5 @@
 /_ReSharper.Caches
 obj
 bin
+*.suo
+*.user
