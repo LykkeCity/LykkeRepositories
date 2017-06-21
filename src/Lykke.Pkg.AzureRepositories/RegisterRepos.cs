@@ -1,5 +1,9 @@
-﻿using Lykke.AzureRepositories.Azure.Tables;
+﻿using System.Collections.Immutable;
+using Lykke.AzureRepositories.Azure.Tables;
+using Lykke.AzureRepositories.CandleHistory;
 using Lykke.AzureRepositories.Dictionaries;
+using Lykke.AzureRepositories.Exceptions;
+using Lykke.AzureRepositories.Log;
 using Lykke.Common.Entities.Dictionaries;
 using Lykke.Core;
 using Lykke.Core.Azure.Blob;
@@ -11,9 +15,19 @@ namespace Lykke.AzureRepositories
 {
     public static class RegisterReposExt
     {
+        public static void RegisterRepositories(this IServiceCollection services, string connectionString, global::Common.Log.ILog log)
+        {
+            services.RegisterRepositories(connectionString, new CommonLogAdapter(log));
+        }
+
         public static void RegisterRepositories(this IServiceCollection services, string connectionString, ILog log)
         {
             services.RegisterRepositories(connectionString, connectionString, log);
+        }
+
+        public static void RegisterRepositories(this IServiceCollection services, string connectionString, string userConnectionString, global::Common.Log.ILog log)
+        {
+            RegisterRepositories(services, connectionString, userConnectionString, new CommonLogAdapter(log));
         }
 
         public static void RegisterRepositories(this IServiceCollection services, string connectionString, string userConnectionString, ILog log)
@@ -72,8 +86,31 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<IMerchantPayRequestRepository>(
                 new MerchantPayRequestRepository(new AzureTableStorage<MerchantPayRequest>(connectionString, "MerchantPayRequest", log)));
+        }
 
+
+        public static void RegisterCandleHistoryRepository(this IServiceCollection services, IImmutableDictionary<string, string> assetPairConnectionStrings, 
+            global::Common.Log.ILog log)
+        {
+            services.RegisterCandleHistoryRepository(assetPairConnectionStrings, new CommonLogAdapter(log));
+        }
+
+        public static void RegisterCandleHistoryRepository(this IServiceCollection services, IImmutableDictionary<string, string> assetPairConnectionStrings, ILog log)
+        {
+            services.AddSingleton(new CandleHistoryRepositoryResolver((assetPair, tableName) =>
+            {
+                if (!assetPairConnectionStrings.TryGetValue(assetPair, out string assetConnectionString) || string.IsNullOrEmpty(assetConnectionString))
+                {
+                    throw new ConfigurationException($"Connection string for asset pair '{assetPair}' is not specified.");
+                }
+
+                var storage = new AzureTableStorage<CandleTableEntity>(assetConnectionString, tableName, log);
+                
+                // Preload table info
+                storage.GetDataAsync(assetPair, "1900-01-01").Wait();
+
+                return storage;
+            }));
         }
     }
-
 }

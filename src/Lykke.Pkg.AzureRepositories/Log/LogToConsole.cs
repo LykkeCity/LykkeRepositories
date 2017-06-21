@@ -4,7 +4,7 @@ using Lykke.Core.Log;
 
 namespace Lykke.AzureRepositories.Log
 {
-	public class LogToConsole : ILog
+    public class LogToConsole : ILog
 	{
 		public Task WriteInfo(string component, string process, string context, string info, DateTime? dateTime = null)
 		{
