@@ -26,7 +26,8 @@ namespace Lykke.Core
     public enum MerchantPayRequestType
     {
         Purchase,
-        Transfer
+        Transfer,
+        ExchangeTransfer
     }
 
     public interface IPayFee
