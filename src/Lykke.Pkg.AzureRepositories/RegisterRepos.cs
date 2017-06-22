@@ -8,6 +8,7 @@ using Lykke.Common.Entities.Dictionaries;
 using Lykke.Core;
 using Lykke.Core.Azure.Blob;
 using Lykke.Core.Log;
+using Lykke.Domain.Prices.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -97,7 +98,7 @@ namespace Lykke.AzureRepositories
 
         public static void RegisterCandleHistoryRepository(this IServiceCollection services, IImmutableDictionary<string, string> assetPairConnectionStrings, ILog log)
         {
-            services.AddSingleton(new CandleHistoryRepositoryResolver((assetPair, tableName) =>
+            services.AddSingleton<ICandleHistoryRepository>(new CandleHistoryRepositoryResolver((assetPair, tableName) =>
             {
                 if (!assetPairConnectionStrings.TryGetValue(assetPair, out string assetConnectionString) || string.IsNullOrEmpty(assetConnectionString))
                 {
@@ -105,7 +106,7 @@ namespace Lykke.AzureRepositories
                 }
 
                 var storage = new AzureTableStorage<CandleTableEntity>(assetConnectionString, tableName, log);
-                
+
                 // Preload table info
                 storage.GetDataAsync(assetPair, "1900-01-01").Wait();
 
