@@ -30,7 +30,7 @@ namespace Lykke.Core
         ExchangeTransfer
     }
 
-    public interface IPayFee
+    public class PayFee
     {
         float Percent { get; set; }
         int Pips { get; set; }
@@ -42,7 +42,7 @@ namespace Lykke.Core
         string MerchantId { get; set; }
         string RequestId { get; set; }
         string TransactionId { get; set; }
-        IPayFee Markup { get; set; }
+        PayFee Markup { get; set; }
         MerchantPayRequestStatus MerchantPayRequestStatus { get; set; }
         MerchantPayRequestType MerchantPayRequestType { get; set; }
         MerchantPayRequestNotification MerchantPayRequestNotification { get; set; }

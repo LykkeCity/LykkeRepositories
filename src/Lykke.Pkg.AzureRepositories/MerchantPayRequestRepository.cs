@@ -8,7 +8,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Lykke.AzureRepositories
 {
-    public class PayFee : IPayFee
+    public class PayFee : Core.PayFee
     {
         public float Percent { get; set; }
         public int Pips { get; set; }
@@ -28,7 +28,7 @@ namespace Lykke.AzureRepositories
             set => RowKey = value;
         }
         public string TransactionId { get; set; }
-        public IPayFee Markup { get; set; }
+        public Core.PayFee Markup { get; set; }
         public MerchantPayRequestStatus MerchantPayRequestStatus { get; set; }
         public MerchantPayRequestType MerchantPayRequestType { get; set; }
         public MerchantPayRequestNotification MerchantPayRequestNotification { get; set; }
