@@ -27,7 +27,7 @@ namespace Lykke.AzureRepositories
 
         public static void RegisterRepositories(this IServiceCollection services, string connectionString, string userConnectionString, global::Common.Log.ILog log)
         {
-            RegisterRepositories(services, connectionString, userConnectionString, new CommonLogAdapter(log));
+            RegisterRepositories(services, connectionString, userConnectionString, log == null ? null : new CommonLogAdapter(log));
         }
 
         public static void RegisterRepositories(this IServiceCollection services, string connectionString, string userConnectionString, ILog log)
