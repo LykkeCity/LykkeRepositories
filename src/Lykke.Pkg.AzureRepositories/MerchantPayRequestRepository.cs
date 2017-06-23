@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Lykke.Core;
@@ -36,9 +37,9 @@ namespace Lykke.AzureRepositories
         public string ProgressUrl { get; set; }
         public string OrderId { get; set; }
 
-        public float Markup_Percent { get; set; }
-        public int Markup_Pips { get; set; }
-        public float Markup_FixedFee { get; set; }
+        public string Markup_Percent { get; set; }
+        public string Markup_Pips { get; set; }
+        public string Markup_FixedFee { get; set; }
 
         public MerchantPayRequest()
         {
@@ -53,9 +54,9 @@ namespace Lykke.AzureRepositories
                 RequestId = request.RequestId,
                 TransactionId = request.TransactionId,
                 Markup = request.Markup,
-                Markup_Percent = request.Markup.Percent,
-                Markup_Pips = request.Markup.Pips,
-                Markup_FixedFee = request.Markup.FixedFee,
+                Markup_Percent = request.Markup.Percent.ToString(CultureInfo.InvariantCulture),
+                Markup_Pips = request.Markup.Pips.ToString(),
+                Markup_FixedFee = request.Markup.FixedFee.ToString(CultureInfo.InvariantCulture),
                 MerchantPayRequestStatus = request.MerchantPayRequestStatus,
                 MerchantPayRequestType = request.MerchantPayRequestType,
                 MerchantPayRequestNotification = request.MerchantPayRequestNotification,
@@ -75,11 +76,16 @@ namespace Lykke.AzureRepositories
         internal static MerchantPayRequest CreateFull(IMerchantPayRequest request)
         {
             var result = Create(request);
+            float percent, fixedFee;
+            int pips;
+            float.TryParse(result.Markup_Percent, out percent);
+            float.TryParse(result.Markup_FixedFee, out fixedFee);
+            int.TryParse(result.Markup_Pips, out pips);
             result.Markup = new PayFee
             {
-                Percent = result.Markup_Percent,
-                Pips = result.Markup_Pips,
-                FixedFee = result.Markup_FixedFee
+                Percent = percent,
+                Pips = pips,
+                FixedFee = fixedFee
             };
 
             return result;
