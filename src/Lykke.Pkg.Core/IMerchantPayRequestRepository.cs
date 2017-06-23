@@ -32,9 +32,9 @@ namespace Lykke.Core
 
     public class PayFee
     {
-        float Percent { get; set; }
-        int Pips { get; set; }
-        float FixedFee { get; set; }
+        public float Percent { get; set; }
+        public int Pips { get; set; }
+        public float FixedFee { get; set; }
       
     }
     public interface IMerchantPayRequest
