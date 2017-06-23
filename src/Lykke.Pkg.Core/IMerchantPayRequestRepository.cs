@@ -49,7 +49,7 @@ namespace Lykke.Core
         string SourceAddress { get; set; }
         string DestinationAddress { get; set; }
         string AssetPair { get; set; }
-        decimal Amount { get; set; }
+        double Amount { get; set; }
         string AssetId { get; set; }
         string SuccessUrl { get; set; }
         string ErrorUrl { get; set; }
