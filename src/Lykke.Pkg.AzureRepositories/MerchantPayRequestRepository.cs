@@ -24,9 +24,22 @@ namespace Lykke.AzureRepositories
         }
         public string TransactionId { get; set; }
         public Core.PayFee Markup { get; set; }
-        public MerchantPayRequestStatus MerchantPayRequestStatus { get; set; }
-        public MerchantPayRequestType MerchantPayRequestType { get; set; }
-        public MerchantPayRequestNotification MerchantPayRequestNotification { get; set; }
+
+        public MerchantPayRequestStatus MerchantPayRequestStatus
+        {
+            get { return (MerchantPayRequestStatus) Enum.Parse(typeof(MerchantPayRequestStatus), SMerchantPayRequestStatus); }
+            set => SMerchantPayRequestStatus = value.ToString();
+        }
+        public MerchantPayRequestType MerchantPayRequestType
+        {
+            get { return (MerchantPayRequestType)Enum.Parse(typeof(MerchantPayRequestType), SMerchantPayRequestType); }
+            set => SMerchantPayRequestType = value.ToString();
+        }
+        public MerchantPayRequestNotification MerchantPayRequestNotification
+        {
+            get { return (MerchantPayRequestNotification)Enum.Parse(typeof(MerchantPayRequestNotification), SMerchantPayRequestNotification); }
+            set => SMerchantPayRequestNotification = value.ToString();
+        }
         public string SourceAddress { get; set; }
         public string DestinationAddress { get; set; }
         public string AssetPair { get; set; }
@@ -40,6 +53,10 @@ namespace Lykke.AzureRepositories
         public string Markup_Percent { get; set; }
         public string Markup_Pips { get; set; }
         public string Markup_FixedFee { get; set; }
+
+        public string SMerchantPayRequestStatus { get; set; }
+        public string SMerchantPayRequestType { get; set; }
+        public string SMerchantPayRequestNotification { get; set; }
 
         public MerchantPayRequest()
         {
