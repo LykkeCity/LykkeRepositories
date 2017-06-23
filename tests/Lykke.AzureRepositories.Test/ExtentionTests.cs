@@ -40,5 +40,12 @@ namespace Lykke.AzureRepositories.Test
             var merchant = new MerchantRepository(new AzureTableStorage<MerchantEntity>(connectionString, "Merchants", null)).GetAsync("BittellerATM-LykkeDev").Result;
             Assert.NotNull(merchant);
         }
+
+        [Fact]
+        public void TestMerchantStoreRepo()
+        {
+            var merchant = new MerchantPayRequestRepository(new AzureTableStorage<MerchantPayRequest>(connectionString, "MerchantPayRequest", null)).GetAllAsync().Result;
+            Assert.NotNull(merchant);
+        }
     }
 }

@@ -54,9 +54,9 @@ namespace Lykke.AzureRepositories
                 RequestId = request.RequestId,
                 TransactionId = request.TransactionId,
                 Markup = request.Markup,
-                Markup_Percent = request.Markup.Percent.ToString(CultureInfo.InvariantCulture),
-                Markup_Pips = request.Markup.Pips.ToString(),
-                Markup_FixedFee = request.Markup.FixedFee.ToString(CultureInfo.InvariantCulture),
+                Markup_Percent = request.Markup?.Percent.ToString(CultureInfo.InvariantCulture),
+                Markup_Pips = request.Markup?.Pips.ToString(),
+                Markup_FixedFee = request.Markup?.FixedFee.ToString(CultureInfo.InvariantCulture),
                 MerchantPayRequestStatus = request.MerchantPayRequestStatus,
                 MerchantPayRequestType = request.MerchantPayRequestType,
                 MerchantPayRequestNotification = request.MerchantPayRequestNotification,
@@ -73,14 +73,14 @@ namespace Lykke.AzureRepositories
             };
         }
 
-        internal static MerchantPayRequest CreateFull(IMerchantPayRequest request)
+        internal static MerchantPayRequest CreateFull(MerchantPayRequest request)
         {
             var result = Create(request);
             float percent, fixedFee;
             int pips;
-            float.TryParse(result.Markup_Percent, out percent);
-            float.TryParse(result.Markup_FixedFee, out fixedFee);
-            int.TryParse(result.Markup_Pips, out pips);
+            float.TryParse(request.Markup_Percent, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out percent);
+            float.TryParse(request.Markup_FixedFee, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out fixedFee);
+            int.TryParse(request.Markup_Pips, out pips);
             result.Markup = new PayFee
             {
                 Percent = percent,
