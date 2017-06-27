@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lykke.AzureRepositories.Extentions;
@@ -49,9 +50,9 @@ namespace Lykke.AzureRepositories
            return await _tableStorage.GetDataAsync();
         }
 
-        public async Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressOfMerchantAsync(string merchantId)
+        public async Task<IMerchantWalletEntity> GetAllAddressOfMerchantAsync(string merchantId)
         {
-            return await _tableStorage.GetDataAsync(merchantId);
+            return (await _tableStorage.GetDataAsync(merchantId)).FirstOrDefault();
         }
     }
 }

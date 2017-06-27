@@ -7,6 +7,7 @@ namespace Lykke.Core
     {
         string MerchantId { get; set; }
         string Data { get; set; }
+        
     }
 
 
@@ -16,6 +17,6 @@ namespace Lykke.Core
 
         Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressAsync();
 
-        Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressOfMerchantAsync(string merchantId);
+        Task<IMerchantWalletEntity> GetAllAddressOfMerchantAsync(string merchantId);
     }
 }
