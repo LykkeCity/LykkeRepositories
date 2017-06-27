@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Lykke.Core
 {
@@ -11,6 +12,10 @@ namespace Lykke.Core
 
     public interface IMerchantWalletRepository
     {
-        Task SaveNewAddress(IMerchantWalletEntity merchantWallet);
+        Task SaveNewAddressAsync(IMerchantWalletEntity merchantWallet);
+
+        Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressAsync();
+
+        Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressOfMerchantAsync(string merchantId);
     }
 }

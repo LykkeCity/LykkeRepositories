@@ -39,9 +39,19 @@ namespace Lykke.AzureRepositories
 
         }
 
-        public async Task SaveNewAddress(IMerchantWalletEntity merchantWallet)
+        public async Task SaveNewAddressAsync(IMerchantWalletEntity merchantWallet)
         {
             await _tableStorage.InsertOrMergeAsync(MerchantWalletEntity.Create(merchantWallet));
+        }
+
+        public async Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressAsync()
+        {
+           return await _tableStorage.GetDataAsync();
+        }
+
+        public async Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressOfMerchantAsync(string merchantId)
+        {
+            return await _tableStorage.GetDataAsync(merchantId);
         }
     }
 }
