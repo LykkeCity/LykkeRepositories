@@ -32,6 +32,7 @@ namespace Lykke.AzureRepositories
             {
                 MerchantId = merchantWallet.MerchantId,
                 Data = merchantWallet.Data,
+                WalletAddress = merchantWallet.WalletAddress,
                 ETag = "*"
             };
         }
