@@ -18,6 +18,6 @@ namespace Lykke.Core
 
         Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressAsync();
 
-        Task<IMerchantWalletEntity> GetAllAddressOfMerchantAsync(string merchantId);
+        Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressOfMerchantAsync(string merchantId);
     }
 }

@@ -57,9 +57,9 @@ namespace Lykke.AzureRepositories
            return await _tableStorage.GetDataAsync();
         }
 
-        public async Task<IMerchantWalletEntity> GetAllAddressOfMerchantAsync(string merchantId)
+        public async Task<IEnumerable<IMerchantWalletEntity>> GetAllAddressOfMerchantAsync(string merchantId)
         {
-            return (await _tableStorage.GetDataAsync(merchantId)).FirstOrDefault();
+            return await _tableStorage.GetDataAsync(merchantId);
         }
     }
 }
