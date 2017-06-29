@@ -47,5 +47,12 @@ namespace Lykke.AzureRepositories.Test
             var merchant = new MerchantPayRequestRepository(new AzureTableStorage<MerchantPayRequest>(connectionString, "MerchantPayRequest", null)).GetAllAsync().Result;
             Assert.NotNull(merchant);
         }
+
+        [Fact]
+        public void TestMerchantWallets()
+        {
+            var wallets = new MerchantWalletRepository(new AzureTableStorage<MerchantWalletEntity>(connectionString, "MerchantWallets", null)).GetAllAddressAsync().Result;
+            Assert.NotNull(wallets);
+        }
     }
 }

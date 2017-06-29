@@ -17,6 +17,13 @@ namespace Lykke.AzureRepositories
             get => PartitionKey;
             set => PartitionKey = value;
         }
+
+        public string WalletAddress
+        {
+            get => RowKey;
+            set => RowKey = value;
+        }
+
         public string Data { get; set; }
 
         public static MerchantWalletEntity Create(IMerchantWalletEntity merchantWallet)
@@ -25,8 +32,7 @@ namespace Lykke.AzureRepositories
             {
                 MerchantId = merchantWallet.MerchantId,
                 Data = merchantWallet.Data,
-                ETag = "*",
-                RowKey = DateTime.UtcNow.StorageString()
+                ETag = "*"
             };
         }
     }
