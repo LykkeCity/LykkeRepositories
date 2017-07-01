@@ -90,6 +90,10 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<IMerchantPayRequestRepository>(
                 new MerchantPayRequestRepository(new AzureTableStorage<MerchantPayRequest>(connectionString, "MerchantPayRequest", log)));
+
+            services.AddSingleton<IBitcoinAggRepository>(
+                new BitcoinAggRepository(new AzureTableStorage<BitcoinAggEntity>(connectionString, "BitcoinAgg", log),
+                    new AzureTableStorage<BitcoinHeightEntity>(connectionString, "BitcoinHeight", log))); 
         }
 
 
