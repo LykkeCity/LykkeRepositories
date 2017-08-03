@@ -70,7 +70,7 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<IUserActionHistoryRepository>(
                 new UserActionHistoryRepository(new AzureTableStorage<UserActionHistoryEntity>(userConnectionString, "UserActionHistory", log),
-                    new AzureBlobStorage(connectionString), "UserActionHistoryParam"));
+                    new AzureBlobStorage(connectionString), "useractionhistoryparam"));
 
             services.AddSingleton<IAssertPairHistoryRepository>(
                 new AssertPairHistoryRepository(new AzureTableStorage<AssertPairHistoryEntity>(connectionString, "AssertPairHistory", log)));
