@@ -64,8 +64,12 @@ namespace Lykke.AzureRepositories
                 var parms = entity.Params;
                 entity.Params = Guid.NewGuid().ToString();
 
-                var data = Encoding.UTF8.GetBytes(parms);
-                await _blobStorage.SaveBlobAsync(_container, entity.Params, data);
+                if (!string.IsNullOrEmpty(parms))
+                {
+                    var data = Encoding.UTF8.GetBytes(parms);
+                    await _blobStorage.SaveBlobAsync(_container, entity.Params, data);
+                }
+               
                
             }
            
