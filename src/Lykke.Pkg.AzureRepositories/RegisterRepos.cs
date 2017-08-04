@@ -89,7 +89,7 @@ namespace Lykke.AzureRepositories
                 new ServiceTokenHistoryRepository(new AzureTableStorage<ServiceTokenHistoryEntity>(connectionString, "ServiceTokenHistory", log)));
 
             services.AddSingleton<IAccessDataRepository>(
-                new AccessDataRepository(new AzureBlobStorage(connectionString), "access", "accessHistory", "accessHistory.json")
+                new AccessDataRepository(new AzureBlobStorage(connectionString), "access", "accesshistory", "accessHistory.json")
             );
 
             services.AddSingleton<IMerchantPayRequestRepository>(
