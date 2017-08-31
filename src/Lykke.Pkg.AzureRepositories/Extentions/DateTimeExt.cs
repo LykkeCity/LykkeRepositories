@@ -2,7 +2,7 @@
 
 namespace Lykke.AzureRepositories.Extentions
 {
-    static class DateTimeExt
+    public static class DateTimeExt
     {
         public static string StorageString(this DateTime datetime)
         {
