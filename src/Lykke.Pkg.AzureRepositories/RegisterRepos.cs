@@ -78,6 +78,9 @@ namespace Lykke.AzureRepositories
             services.AddSingleton<IMerchantWalletRepository>(
                 new MerchantWalletRepository(new AzureTableStorage<MerchantWalletEntity>(connectionString, "MerchantWallets", log)));
 
+            services.AddSingleton<ISmsServiceRepository>(
+                new SmsServiceRepository(new AzureTableStorage<SmsEntity>(connectionString, "SmsServiceRequests", log), log));
+
             services.AddSingleton<IMerchantWalletHistoryRepository>(
                 new MerchantWalletHistoryRepository(new AzureTableStorage<MerchantWalletHistoryEntity>(connectionString, "MerchantWalletsHistory", log))); 
 
