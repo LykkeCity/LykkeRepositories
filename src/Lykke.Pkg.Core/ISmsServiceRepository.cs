@@ -24,6 +24,7 @@ namespace Lykke.Core
         int PhoneOperator { get; set; }
         string RowId { get; set; }
         string ParentRowId { get; set; }
+        string Message { get; set; }
     }
 
     public interface ISmsServiceRepository

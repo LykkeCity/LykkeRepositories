@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Lykke.Core;
 using Lykke.Core.Azure;
@@ -19,6 +18,7 @@ namespace Lykke.AzureRepositories
         public int PhoneOperator { get; set; }
         public string RowId { get; set; }
         public string ParentRowId { get; set; }
+        public string Message { get; set; }
 
         public static SmsEntity Create(ISmsEntity entity)
         {
@@ -31,14 +31,15 @@ namespace Lykke.AzureRepositories
                 RowId = entity.RowId,
                 ParentRowId = entity.ParentRowId,
                 PartitionKey = entity.SmsServiceStatus.ToString(),
-                RowKey = entity.DateRow
+                RowKey = entity.DateRow,
+                Message = entity.Message
             };
         }
     }
     public class SmsServiceRepository : ISmsServiceRepository
     {
-        private INoSQLTableStorage<SmsEntity> _tableStorage;
-        private ILog _log;
+        private readonly INoSQLTableStorage<SmsEntity> _tableStorage;
+        private readonly ILog _log;
         private const string Component = "SmsService";
         public SmsServiceRepository(INoSQLTableStorage<SmsEntity> tableStorage, ILog log)
         {
