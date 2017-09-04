@@ -36,10 +36,12 @@ namespace Lykke.AzureRepositories
                 RowKey = entity.DateRow,
                 Message = entity.Message
             };
-            if (entity is ITableEntity)
+            var tableEntity = entity as ITableEntity;
+            if (tableEntity != null)
             {
-                result.ETag = ((ITableEntity) entity).ETag;
+                result.ETag = tableEntity.ETag;
             }
+            return result;
         }
     }
     public class SmsServiceRepository : ISmsServiceRepository
