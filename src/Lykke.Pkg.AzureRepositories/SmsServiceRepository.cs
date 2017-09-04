@@ -24,7 +24,7 @@ namespace Lykke.AzureRepositories
 
         public static SmsEntity Create(ISmsEntity entity)
         {
-            return new SmsEntity
+            var result = new SmsEntity
             {
                 SmsServiceStatus = entity.SmsServiceStatus,
                 DateRow = entity.DateRow,
@@ -36,6 +36,10 @@ namespace Lykke.AzureRepositories
                 RowKey = entity.DateRow,
                 Message = entity.Message
             };
+            if (entity is ITableEntity)
+            {
+                result.ETag = ((ITableEntity) entity).ETag;
+            }
         }
     }
     public class SmsServiceRepository : ISmsServiceRepository
