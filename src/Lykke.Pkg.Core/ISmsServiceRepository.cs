@@ -6,7 +6,6 @@ namespace Lykke.Core
     public enum SmsServiceStatus
     {
         ReadyToSend = 0,
-        Sending,
         Sent,
         GotError
     }
@@ -27,6 +26,7 @@ namespace Lykke.Core
         string ParentRowId { get; set; }
         string Message { get; set; }
         int Atempt { get; set; }
+        string ErrorDescription { get; set; }
     }
 
     public interface ISmsServiceRepository
