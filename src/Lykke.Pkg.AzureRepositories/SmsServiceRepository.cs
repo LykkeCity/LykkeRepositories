@@ -19,6 +19,7 @@ namespace Lykke.AzureRepositories
         public string RowId { get; set; }
         public string ParentRowId { get; set; }
         public string Message { get; set; }
+        public int Atempt { get; set; }
 
         public static SmsEntity Create(ISmsEntity entity)
         {
