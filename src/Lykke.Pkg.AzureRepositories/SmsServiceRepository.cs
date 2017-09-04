@@ -34,7 +34,8 @@ namespace Lykke.AzureRepositories
                 ParentRowId = entity.ParentRowId,
                 PartitionKey = entity.SmsServiceStatus.ToString(),
                 RowKey = entity.DateRow,
-                Message = entity.Message
+                Message = entity.Message,
+                Atempt = entity.Atempt
             };
             var tableEntity = entity as ITableEntity;
             if (tableEntity != null)
