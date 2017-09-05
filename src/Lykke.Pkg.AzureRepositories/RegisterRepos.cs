@@ -10,6 +10,7 @@ using Lykke.Core.Azure.Blob;
 using Lykke.Core.Log;
 using Lykke.Domain.Prices.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.WindowsAzure.Storage.Table;
 
 
 namespace Lykke.AzureRepositories
@@ -80,6 +81,10 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<ISmsServiceRepository>(
                 new SmsServiceRepository(new AzureTableStorage<SmsEntity>(connectionString, "SmsServiceRequests", log), log));
+
+            services.AddSingleton<ITraderRepository>(
+                new TraderRepository(new AzureTableStorage<TableEntity>(connectionString, "Traders", log),
+                    new AzureTableStorage<TraderSettings>(connectionString, "TradersSettings", log))); 
 
             services.AddSingleton<IMerchantWalletHistoryRepository>(
                 new MerchantWalletHistoryRepository(new AzureTableStorage<MerchantWalletHistoryEntity>(connectionString, "MerchantWalletsHistory", log))); 
