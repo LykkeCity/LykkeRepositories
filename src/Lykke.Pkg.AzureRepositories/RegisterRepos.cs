@@ -84,7 +84,7 @@ namespace Lykke.AzureRepositories
 
             services.AddSingleton<ITraderRepository>(
                 new TraderRepository(new AzureTableStorage<TableEntity>(connectionString, "Traders", log),
-                    new AzureTableStorage<TraderSettings>(connectionString, "TradersSettings", log))); 
+                    new AzureTableStorage<TraderSettings>(connectionString, "TraderSettings", log))); 
 
             services.AddSingleton<IMerchantWalletHistoryRepository>(
                 new MerchantWalletHistoryRepository(new AzureTableStorage<MerchantWalletHistoryEntity>(connectionString, "MerchantWalletsHistory", log))); 

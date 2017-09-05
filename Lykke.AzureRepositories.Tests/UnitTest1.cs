@@ -3,6 +3,7 @@ using Lykke.Core;
 using Lykke.AzureRepositories;
 using Lykke.AzureRepositories.Azure.Tables;
 using Lykke.Core.Azure.Blob;
+using Microsoft.WindowsAzure.Storage.Table;
 using Xunit;
 
 namespace Lykke.AzureRepositories.Tests
@@ -13,13 +14,11 @@ namespace Lykke.AzureRepositories.Tests
         public void KeyValueHistoryRepositoryTest()
         {
             var connectionstring =
-                "DefaultEndpointsProtocol=https;AccountName=lkedevsettings;AccountKey=Ztpq2z5ieCo7H5Yp4GUJpWXmIqTrXe25dkJBmlnBp0g8IfrRaVV4H67EjbAFjNC8kbZEMU0TvkFGsMRVrFuvXQ==";
-            IKeyValueHistoryRepository repo =
-                new KeyValueHistoryRepository(
-                    new AzureTableStorage<KeyValueHistory>(connectionstring, "KeyValueHistory", null),
-                    new AzureBlobStorage(connectionstring), "keyvaluehistory");
+                "DefaultEndpointsProtocol=https;AccountName=lkedevmain;AccountKey=l0W0CaoNiRZQIqJ536sIScSV5fUuQmPYRQYohj/UjO7+ZVdpUiEsRLtQMxD+1szNuAeJ351ndkOsdWFzWBXmdw==";
+            var traderRepository = new TraderRepository(new AzureTableStorage<TableEntity>(connectionstring, "Traders", null),
+                new AzureTableStorage<TraderSettings>(connectionstring, "TraderSettings", null));
 
-            repo.SaveKeyValueHistoryAsync("Test", "Test User", "::1").Wait();
+            var settings =  traderRepository.GetPropertiyByPhoneNumber("+375447890502", "SmsSettings").Result;
         }
     }
 }
