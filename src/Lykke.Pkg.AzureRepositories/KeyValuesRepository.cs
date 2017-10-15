@@ -20,13 +20,17 @@ namespace Lykke.AzureRepositories
 
     }
 
+    
+
     public class KeyValuesRepository : IKeyValuesRepository
     {
         private readonly INoSQLTableStorage<KeyValueEntity> _tableStorage;
+        private readonly IKeyValueHistoryRepository _history;
 
-        public KeyValuesRepository(INoSQLTableStorage<KeyValueEntity> tableStorage)
+        public KeyValuesRepository(INoSQLTableStorage<KeyValueEntity> tableStorage, IKeyValueHistoryRepository history)
         {
             _tableStorage = tableStorage;
+            _history = history;
         }
         public async Task<Dictionary<string, string>> GetAsync()
         {
@@ -61,6 +65,17 @@ namespace Lykke.AzureRepositories
             }
 
             return true;
+        }
+
+        public async Task DeleteKeyValueWithHistoryAsync(string keyValueId, string description, string userName, string userIpAddress)
+        {
+            var kvItem = await _tableStorage.GetDataAsync(KeyValueEntity.GeneratePartitionKey(), keyValueId);
+            if (kvItem != null)
+            {
+                await _tableStorage.DeleteAsync(kvItem);
+                await _history.DeleteKeyValueHistoryAsync(keyValueId, description, userName, userIpAddress);
+            }
+            
         }
     }
 }

@@ -52,6 +52,21 @@ namespace Lykke.AzureRepositories
             await _tableStorage.InsertOrMergeAsync(th);
         }
 
-        
+        public async Task DeleteKeyValueHistoryAsync(string keyValueId, string description, string userName, string userIpAddress)
+        {
+            var th = new KeyValueHistory
+            {
+                PartitionKey = KeyValueHistory.GeneratePartitionKey(),
+                RowKey = DateTime.UtcNow.StorageString(),
+                UserName = userName,
+                UserIpAddress = userIpAddress
+            };
+
+            th.KeyValuesSnapshot = $"{th.UserName}_{th.RowKey}_{th.UserIpAddress}";
+
+            await _blobStorage.SaveBlobAsync(_container, th.KeyValuesSnapshot, Encoding.UTF8.GetBytes(description));
+
+            await _tableStorage.InsertOrMergeAsync(th);
+        }
     }
 }

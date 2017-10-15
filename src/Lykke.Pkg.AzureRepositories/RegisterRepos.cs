@@ -44,9 +44,14 @@ namespace Lykke.AzureRepositories
             services.AddSingleton<ITokensRepository>(
                 new TokensRepository(new AzureTableStorage<TokenEntity>(connectionString, "Tokens", log))
             );
+            var kvHistory = new KeyValueHistoryRepository(
+                new AzureTableStorage<KeyValueHistory>(connectionString, "KeyValueHistory", log),
+                new AzureBlobStorage(connectionString), "keyvaluehistory");
+
+            services.AddSingleton<IKeyValueHistoryRepository>(kvHistory);
 
             services.AddSingleton<IKeyValuesRepository>(
-                new KeyValuesRepository(new AzureTableStorage<KeyValueEntity>(connectionString, "KeyValues", log)));
+                new KeyValuesRepository(new AzureTableStorage<KeyValueEntity>(connectionString, "KeyValues", log), kvHistory));
 
             services.AddSingleton<ILockRepository>(
                 new LockRepository(new AzureTableStorage<LockEntity>(connectionString, "Lock", log)));
@@ -89,9 +94,7 @@ namespace Lykke.AzureRepositories
             services.AddSingleton<IMerchantWalletHistoryRepository>(
                 new MerchantWalletHistoryRepository(new AzureTableStorage<MerchantWalletHistoryEntity>(connectionString, "MerchantWalletsHistory", log))); 
 
-            services.AddSingleton<IKeyValueHistoryRepository>(
-                new KeyValueHistoryRepository(new AzureTableStorage<KeyValueHistory>(connectionString, "KeyValueHistory", log),
-                    new AzureBlobStorage(connectionString), "keyvaluehistory"));
+            
 
             services.AddSingleton<IServiceTokenHistoryRepository>(
                 new ServiceTokenHistoryRepository(new AzureTableStorage<ServiceTokenHistoryEntity>(connectionString, "ServiceTokenHistory", log)));
