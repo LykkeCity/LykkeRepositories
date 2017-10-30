@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lykke.AzureRepositories.Extentions;
@@ -17,6 +18,8 @@ namespace Lykke.AzureRepositories
         }
 
 
+        public string KeyValueId { get; set; }
+        public string NewValue { get; set; }
         public string KeyValuesSnapshot { get; set; }
         public string UserName { get; set; }
         public string UserIpAddress { get; set; }
@@ -35,10 +38,12 @@ namespace Lykke.AzureRepositories
             _container = container;
         }
 
-        public async Task SaveKeyValueHistoryAsync(string keyValues, string userName, string userIpAddress)
+        public async Task SaveKeyValueHistoryAsync(string keyValueId, string newValue, string keyValues, string userName, string userIpAddress)
         {
             var th = new KeyValueHistory
             {
+                KeyValueId = keyValueId,
+                NewValue = newValue,
                 PartitionKey = KeyValueHistory.GeneratePartitionKey(),
                 RowKey = DateTime.UtcNow.StorageString(),
                 UserName = userName,
@@ -56,6 +61,7 @@ namespace Lykke.AzureRepositories
         {
             var th = new KeyValueHistory
             {
+                KeyValueId = keyValueId,
                 PartitionKey = KeyValueHistory.GeneratePartitionKey(),
                 RowKey = DateTime.UtcNow.StorageString(),
                 UserName = userName,
@@ -67,6 +73,17 @@ namespace Lykke.AzureRepositories
             await _blobStorage.SaveBlobAsync(_container, th.KeyValuesSnapshot, Encoding.UTF8.GetBytes(description));
 
             await _tableStorage.InsertOrMergeAsync(th);
+        }
+
+        public async Task<List<IKeyValueHistory>> GetHistoryByKeyValueAsync(string keyValueId)
+        {
+            var hist = await _tableStorage.GetDataAsync();
+            var history = from h in hist
+                where h.KeyValueId.Equals(keyValueId)
+                orderby h.Timestamp descending
+                select (IKeyValueHistory)h;
+
+            return history.ToList();
         }
     }
 }
