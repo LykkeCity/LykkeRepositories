@@ -77,9 +77,14 @@ namespace Lykke.AzureRepositories
 
         public async Task<List<IKeyValueHistory>> GetHistoryByKeyValueAsync(string keyValueId)
         {
+            if (string.IsNullOrEmpty(keyValueId))
+            {
+                return new List<IKeyValueHistory>();
+            }
+
             var hist = await _tableStorage.GetDataAsync();
             var history = from h in hist
-                where h.KeyValueId.Equals(keyValueId)
+                where keyValueId.Equals(h.KeyValueId)
                 orderby h.Timestamp descending
                 select (IKeyValueHistory)h;
 
