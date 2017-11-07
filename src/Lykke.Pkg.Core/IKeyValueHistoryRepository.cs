@@ -16,11 +16,17 @@ namespace Lykke.Core
 
     public interface IKeyValueHistoryRepository
     {
-        Task SaveKeyValueHistoryAsync(string keyValueId, string newValue,  string keyValues, string userName, string userIpAddress);
+        Task SaveKeyValueHistoryAsync(string keyValueId, string newValue, string keyValues, string userName,
+            string userIpAddress);
 
         Task DeleteKeyValueHistoryAsync(string keyValueId, string description, string userName,
             string userIpAddress);
 
         Task<List<IKeyValueHistory>> GetHistoryByKeyValueAsync(string keyValueId);
+
+        Task<List<IKeyValueHistory>> GetAllAsync();
+
+        Task<List<string>> GetAllBlobAsync();
+
     }
 }

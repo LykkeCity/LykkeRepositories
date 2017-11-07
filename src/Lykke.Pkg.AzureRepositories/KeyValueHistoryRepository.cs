@@ -90,5 +90,17 @@ namespace Lykke.AzureRepositories
 
             return history.ToList();
         }
+
+        public async Task<List<IKeyValueHistory>> GetAllAsync()
+        {
+            var hist = await _tableStorage.GetDataAsync();
+            return hist.Select(kvh=>(IKeyValueHistory)kvh).ToList();
+        }
+
+        public async Task<List<string>> GetAllBlobAsync()
+        {
+            var result = await _blobStorage.GetListOfBlobsAsync(_container);
+            return result.ToList();
+        }
     }
 }
