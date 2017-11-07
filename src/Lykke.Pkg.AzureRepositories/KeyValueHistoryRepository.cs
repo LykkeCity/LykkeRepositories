@@ -109,7 +109,7 @@ namespace Lykke.AzureRepositories
                 {
                     continue;
                 }
-                result.Add(k, (await _blobStorage.GetAsync(_container, ks[ks.Length-1])).AsBytes());
+                result.Add(ks[ks.Length - 1], (await _blobStorage.GetAsync(_container, ks[ks.Length-1])).AsBytes());
                 
             }
 
