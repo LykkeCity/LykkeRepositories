@@ -26,7 +26,7 @@ namespace Lykke.Core
 
         Task<List<IKeyValueHistory>> GetAllAsync();
 
-        Task<List<string>> GetAllBlobAsync();
+        Task<Dictionary<string, byte[]>> GetAllBlobAsync();
 
     }
 }

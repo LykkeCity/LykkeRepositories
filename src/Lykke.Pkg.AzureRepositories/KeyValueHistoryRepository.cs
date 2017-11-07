@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Lykke.AzureRepositories.Extentions;
@@ -97,10 +98,22 @@ namespace Lykke.AzureRepositories
             return hist.Select(kvh=>(IKeyValueHistory)kvh).ToList();
         }
 
-        public async Task<List<string>> GetAllBlobAsync()
+        public async Task<Dictionary<string, byte[]>> GetAllBlobAsync()
         {
-            var result = await _blobStorage.GetListOfBlobsAsync(_container);
-            return result.ToList();
+            var keys = await _blobStorage.GetListOfBlobsAsync(_container);
+            var result = new Dictionary<string, byte[]>();
+            foreach (var k in keys)
+            {
+                var ks = k.Split(@"/\".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                if (ks.Length == 0)
+                {
+                    continue;
+                }
+                result.Add(k, (await _blobStorage.GetAsync(_container, ks[ks.Length-1])).AsBytes());
+                
+            }
+
+            return result;
         }
     }
 }
