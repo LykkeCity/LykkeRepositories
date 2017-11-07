@@ -19,6 +19,9 @@ namespace Lykke.Core
         Task SaveKeyValueHistoryAsync(string keyValueId, string newValue, string keyValues, string userName,
             string userIpAddress);
 
+        Task SaveKeyValueHistoryAsync(string keyValueId, string newValue, string keyValues, string userName,
+            string userIpAddress, DateTime atDate);
+
         Task DeleteKeyValueHistoryAsync(string keyValueId, string description, string userName,
             string userIpAddress);
 
