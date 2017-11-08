@@ -39,6 +39,11 @@ namespace Lykke.AzureRepositories
             _container = container;
         }
 
+        public async Task DeleteKeyValueHistoryFromDbAsync(string rowKey)
+        {
+            await _tableStorage.DeleteAsync(KeyValueHistory.GeneratePartitionKey(), rowKey);
+        }
+
         public async Task SaveKeyValueHistoryAsync(string keyValueId, string newValue, string keyValues, string userName,
             string userIpAddress, DateTime atDate)
         {

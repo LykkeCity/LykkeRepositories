@@ -25,6 +25,8 @@ namespace Lykke.Core
         Task DeleteKeyValueHistoryAsync(string keyValueId, string description, string userName,
             string userIpAddress);
 
+        Task DeleteKeyValueHistoryFromDbAsync(string rowKey);
+
         Task<List<IKeyValueHistory>> GetHistoryByKeyValueAsync(string keyValueId);
 
         Task<List<IKeyValueHistory>> GetAllAsync();
