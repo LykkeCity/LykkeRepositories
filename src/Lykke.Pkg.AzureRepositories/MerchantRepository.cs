@@ -26,6 +26,8 @@ namespace Lykke.AzureRepositories
         public string LykkeWalletKey { get; set; }
         public double DeltaSpread { get; set; }
         public int TimeCacheRates { get; set; }
+        public double LpMarkupPercent { get; set; }
+        public double LpMarkupPips { get; set; }
     }
 
     public class MerchantRepository : IMerchantRepository

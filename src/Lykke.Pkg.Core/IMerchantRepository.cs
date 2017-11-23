@@ -14,6 +14,8 @@ namespace Lykke.Core
         string LykkeWalletKey { get; set; }
         double DeltaSpread { get; set; }
         int TimeCacheRates { get; set; }
+        double LpMarkupPercent { get; set; }
+        double LpMarkupPips { get; set; }
     }
 
     public interface IMerchantRepository
