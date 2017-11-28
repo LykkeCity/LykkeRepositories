@@ -15,7 +15,7 @@ namespace Lykke.Core
         double DeltaSpread { get; set; }
         int TimeCacheRates { get; set; }
         double LpMarkupPercent { get; set; }
-        double LpMarkupPips { get; set; }
+        int LpMarkupPips { get; set; }
     }
 
     public interface IMerchantRepository
