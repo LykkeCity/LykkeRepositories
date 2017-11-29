@@ -57,11 +57,12 @@ namespace Lykke.Core
         string OrderId { get; set; }
     }
 
+
+
     public interface IMerchantPayRequestRepository
     {
         Task SaveRequestAsync(IMerchantPayRequest request);
         Task<IEnumerable<IMerchantPayRequest>> GetAllAsync();
         Task<IEnumerable<IMerchantPayRequest>> GetAllByMerchantIdAsync(string merchantId);
     }
-
 }
