@@ -59,6 +59,9 @@ namespace Lykke.AzureRepositories
             services.AddSingleton<IUserRepository>(
                new UserRepository(new AzureTableStorage<UserEntity>(userConnectionString, "User", log)));
 
+            services.AddSingleton<IInvoiceRepository>(
+                new InvoiceRepository(new AzureTableStorage<InvoiceEntity>(userConnectionString, "Invoices", log)));
+
             services.AddSingleton<IServiceTokenRepository>(
               new ServiceTokenRepository(new AzureTableStorage<ServiceTokenEntity>(connectionString, "ServiceToken", log)));
 
