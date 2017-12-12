@@ -40,6 +40,7 @@ namespace Lykke.AzureRepositories
         public string AssetPair { get; set; }
         public string ExchangeAssetId { get; set; }
         public double Amount { get; set; }
+        public double OriginAmount { get; set; }
         public double ExchangeRate { get; set; }
         public string AssetId { get; set; }
         public string SuccessUrl { get; set; }
@@ -77,6 +78,7 @@ namespace Lykke.AzureRepositories
                 SourceAddress = request.SourceAddress,
                 AssetPair = request.AssetPair,
                 Amount = request.Amount,
+                OriginAmount = request.OriginAmount,
                 AssetId = request.AssetId,
                 SuccessUrl = request.SuccessUrl,
                 ErrorUrl = request.ErrorUrl,

@@ -17,6 +17,7 @@ namespace Lykke.Core
         string AssetId { get; set; }
         string ExchangeAssetId { get; set; }
         double Amount { get; set; }
+        double OriginAmount { get; set; }
         double ExchangeRate { get; set; }
         string SuccessUrl { get; set; }
         string ErrorUrl { get; set; }
