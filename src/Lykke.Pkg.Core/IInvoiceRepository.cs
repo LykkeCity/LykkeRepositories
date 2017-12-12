@@ -12,6 +12,7 @@ namespace Lykke.Core
         string InvoiceNumber { get; set; }
         double Amount { get; set; }
         string Currency { get; set; }
+        string Status { get; set; }
     }
 
     public interface IInvoiceRepository
