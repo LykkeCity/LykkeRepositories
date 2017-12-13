@@ -26,6 +26,7 @@ namespace Lykke.AzureRepositories
         public double Amount { get; set; }
         public string Currency { get; set; }
         public string Status { get; set; }
+        public string WalletAddress { get; set; }
 
         public static string GeneratePartitionKey()
         {
@@ -51,7 +52,8 @@ namespace Lykke.AzureRepositories
                     InvoiceNumber = invoice.InvoiceNumber,
                     Amount = invoice.Amount,
                     Currency = invoice.Currency,
-                    Status = invoice.Status
+                    Status = invoice.Status,
+                    WalletAddress = invoice.WalletAddress
                 };
                 await _tableStorage.InsertOrMergeAsync(store);
                 return true;
