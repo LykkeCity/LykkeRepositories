@@ -50,6 +50,7 @@ namespace Lykke.AzureRepositories
         public string TransactionDetectionTime { get; set; }
         public string TransactionWaitingTime { get; set; }
         public string Transaction { get; set; }
+        public string TransactionStatus { get; set; }
 
         public string Markup_Percent { get; set; }
         public string Markup_Pips { get; set; }
@@ -90,7 +91,8 @@ namespace Lykke.AzureRepositories
                 TransactionWaitingTime = request.TransactionWaitingTime,
                 ExchangeAssetId = request.ExchangeAssetId,
                 ExchangeRate = request.ExchangeRate,
-                Transaction = request.Transaction
+                Transaction = request.Transaction,
+                TransactionStatus = request.TransactionStatus
 
             };
         }

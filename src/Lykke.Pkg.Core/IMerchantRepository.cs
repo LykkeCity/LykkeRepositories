@@ -16,6 +16,7 @@ namespace Lykke.Core
         int TimeCacheRates { get; set; }
         double LpMarkupPercent { get; set; }
         int LpMarkupPips { get; set; }
+        string LwId { get; set; }
     }
 
     public interface IMerchantRepository

@@ -26,6 +26,7 @@ namespace Lykke.Core
         string TransactionDetectionTime { get; set; }
         string TransactionWaitingTime { get; set; }
         string Transaction { get; set; }
+        string TransactionStatus { get; set; }
     }
 
     public interface IMerchantOrderRequestRepository

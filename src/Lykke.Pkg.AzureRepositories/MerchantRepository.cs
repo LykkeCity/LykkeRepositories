@@ -28,6 +28,7 @@ namespace Lykke.AzureRepositories
         public int TimeCacheRates { get; set; }
         public double LpMarkupPercent { get; set; }
         public int LpMarkupPips { get; set; }
+        public string LwId { get; set; }
     }
 
     public class MerchantRepository : IMerchantRepository
